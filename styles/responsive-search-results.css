@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+@media (max-width: 800px) {
+  #page-search-results .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #page-search-results header a {
+    content: url(../assets/arrow-left.svg);
+    width: 32px;
+  }
+}
+
+@media (max-width: 590px) {
+  #page-search-results .cards {
+    grid-template-columns: 1fr;
+  }
+}
