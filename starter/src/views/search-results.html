@@ -1,54 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt_br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecoleta - Resultados da pesquisa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/search-results.css">
-  <link rel="stylesheet" href="/styles/responsive-search-results.css">
-</head>
-<body>
-  <div id="page-search-results">
-    <header>
-      <img src="/assets/logo.svg" alt="logomarca">
-      <a href="index.html">
-        <span></span>
-        Voltar para home
-      </a>
-    </header>
+{% extends "layout.html" %}
+{% set bodyId = "page-search-results" %}
 
-    <main>
+{% block title %}
+  <title>Ecoleta - Resultados da pesquisa</title>
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="/styles/search-results.css">
+<link rel="stylesheet" href="/styles/responsive-search-results.css">
+{% endblock styles %}
+
+{% block content %}
+  {% include "partials/page-header.html" %}
+
+  <main>
+    {% if total > 0 %}
       <h4>
-        <strong>2 pontos</strong> encontrados
+        <strong>{{ total }} pontos</strong>
+        encontrados
       </h4>
 
       <div class="cards">
-        <div class="card">
-          <img src="./assets/img-1-grid.png">
-          <h1>Colectoria</h1>
-          <h3>Resíduos Eletrônicos, Lâmpadas</h3>
-          <p>
-            Rio do Sul, Santa Catarina <br/>
-            Guilherme Gemballa, Jardim América <br/>
-            N° 260
-          </p>
-        </div>
-
-        <div class="card">
-          <img src="./assets/img-2-grid.png">
-          <h1>Papersider</h1>
-          <h3>Papéis e Papelão</h3>
-          <p>
-            Rio do Sul, Santa Catarina <br/>
-            Guilherme Gemballa, Jardim América <br/>
-            N° 260
-          </p>
-        </div>
+        {% for place in places %}
+          <div class="card">
+            <img src="{{ place.image }}">
+            <h1>{{ place.name }}</h1>
+            <h3>{{ place.items }}</h3>
+            <p>
+              {{ place.city }}, {{ place.state }}
+              <br/>
+              {{ place.address }}
+              <br/>
+              {{ place.address2 }}
+            </p>
+          </div>
+        {% endfor %}
       </div>
-    </main>
-  </div>
-  <script src="./scripts/search-results.js"></script>
-</body>
-</html>
+    {% else %}
+      <h4>
+        <strong>Nenhum</strong>
+        local encontrado
+      </h4>
+    {% endif %}
+  </main>
+{% endblock content %}
