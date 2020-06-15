@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="Ecoleta" src="starter/public/assets/check.svg" width="25%">
+  <img alt="Ecoleta" src="starter/public/assets/check.svg" width="5%">
 </p>
 
 ## 🚀 Tecnologias
